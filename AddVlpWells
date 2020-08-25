@@ -1,0 +1,101 @@
+import re
+import shutil as sh
+from PetexOpenServer import *
+
+with open("D://Script/AllWellsInfoQPiWCT_4.csv", 'r') as file:
+    for line in file:
+        memo = re.split('\W+', line)
+        print(memo[0] + ' ' + memo[1] + ' ' + memo[2] + ' ' + memo[3] + ' ' + memo[4] + ' ' + memo[5] + ' ' + memo[6])
+        #    DoSet('GAP.MOD[{PROD}].WELL[' + str(i) + '].IPR[0].PI', words[2])   # Устанавливаем PI
+        #    DoSet('GAP.MOD[{PROD}].WELL[{'+str(words[0])+'}].Label', str(words[1]))
+        if memo[1] == "AS9" and memo[3] == "net":
+            if memo[2] == "GS":
+#                if float(memo[6]) < 1000:
+                if float(memo[4]) < 180:
+                    DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_gs_80-160.vlp")
+                    print("1")
+                elif 160 <= float(memo[4]) < 360:
+                    DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_gs_180-300.vlp")
+                    print('2')
+                elif 360 <= float(memo[4]) < 600:
+                    DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_gs_360-600.vlp")
+                    print('3')
+                else:
+                    DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_gs_550-900.vlp")
+                    print('4')
+                # else:
+                #     if float(memo[4]) < 180:
+                #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_bol_80-160.vlp")
+                #         print('4')
+                #     elif 180 <= float(memo[4]) < 360:
+                #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_bol_180-300.vlp")
+                #         print('5')
+                #     else:
+                #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_bol_360-600.vlp")
+                #         print('6')
+            else:
+                if float(memo[4]) < 80:
+                    DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_NNS_40-75.vlp")
+                    print('5')
+                elif 80 <= float(memo[4]) < 180:
+                    DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_NNS_80-160.vlp")
+                    print('6')
+                else:
+                    DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS9_NNS_180-300.vlp")
+                    print('7')
+
+        if memo[1] == "AS11":
+ #           if float(memo[6]) < 1000:
+            if float(memo[4]) <= 180:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS11_80-160.vlp")
+                print('8')
+            elif 180 < float(memo[4]) <= 320:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS11_180-300.vlp")
+                print('9')
+            elif 320 < float(memo[4]) <= 600:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS11_360-600.vlp")
+                print('10')
+            else:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS11_550-900.vlp")
+                print('11')
+            # else:
+            #     if float(memo[4]) <= 179:
+            #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS11_bol_80-160.vlp")
+            #         print('13')
+            #     elif 179 < float(memo[4]) < 360:
+            #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS11_bol_180-300.vlp")
+            #         print('14')
+            #     else:
+            #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS11_bol_360-600.vlp")
+            #         print('15')
+
+        if memo[1] == "AS12":
+ #           if float(memo[6]) < 1000:
+            if float(memo[4]) < 150:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS12_63-143.vlp")
+                print('12')
+            elif 150 <= float(memo[4]) < 360:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS12_159-381.vlp")
+                print('13')
+            elif 360 <= float(memo[4]) <= 600:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS12_360-600.vlp")
+                print('14')
+            else:
+                DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS12_550-950.vlp")
+                print('15')
+            # else:
+            #     if float(memo[4]) <= 130:
+            #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS12_bol_60-110.vlp")
+            #         print('19')
+            #     elif 150 >= float(memo[4]) <= 275:
+            #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS12_bol_150-275.vlp")
+            #         print('20')
+            #     else:
+            #         DoSet('GAP.MOD[{PROD}].WELL[{' + memo[0] + '}].VLPFILE', r"D:\GAP\model Prosper\Types\Tipovaya_AS12_bol_360-600.vlp")
+            #         print('21')
+
+# DoSet('GAP.MOD[{PROD}].WELL[{' + str(words[0]) + '}].Label', str(words[1]))
+
+# WellName = DoGet('GAP.MOD[{PROD}].WELL[' + str(i) + '].Label')
+# sh.copy('D:/GAP/model Prosper/',)
+# print(str(CAs9gsmal) + ' ' + str(CAs11gsBol) + ' ' + str(CAs11gsmal))
